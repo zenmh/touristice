@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "title": "Air Ticket",
+    "price": 1000,
+    "img": "http://kktaxiservices.com/img/air.jpg",
+    "rating": 5,
+    "about": "This is air ticket"
+  },
+  {
+    "id": 2,
+    "title": "Ship Ticket",
+    "price": 11000,
+    "img": "https://www.eureka.tours/wp-content/uploads/2022/03/The-Atlantick-Cruise.-Ship-Saintmartin.jpg",
+    "rating": 4,
+    "about": "This is Ship ticket"
+  },
+  {
+    "id": 3,
+    "title": "Hotel Ticket",
+    "price": 3000,
+    "img": "https://ewscripps.brightspotcdn.com/dims4/default/c14b7ff/2147483647/strip/true/crop/4200x2363+0+335/resize/1280x720!/quality/90/?url=http%3A%2F%2Fewscripps-brightspot.s3.amazonaws.com%2F06%2F7e%2F6e07c97041508e0a89d0affebd26%2Floewskc-modelrooms3123-hr.jpg",
+    "rating": 4,
+    "about": "This is hotel ticket"
+  },
+  {
+    "id": 4,
+    "title": "Motel Ticket",
+    "price": 4000,
+    "img": "https://media.istockphoto.com/id/102550404/photo/american-motel.jpg?s=612x612&w=0&k=20&c=LDAw_z1EM1-5HtsydCQTYnvWtMp8A_YxsihNRc3lAZE=",
+    "rating": 5,
+    "about": "This is motel ticket"
+  },
+  {
+    "id": 5,
+    "title": "Round Trip",
+    "price": 30000,
+    "img": "https://jetwayholidays.com/wp-content/uploads/elementor/thumbs/img0-1-oq336boc8cot1t9bfcb91zt3wnsk7sz9c1kqks3alk.jpg",
+    "rating": 4.5,
+    "about": "This is round trip"
+  },
+  {
+    "id": 6,
+    "title": "Tour Guide",
+    "price": 600,
+    "img": "https://img.freepik.com/free-vector/female-guide-with-group-tourists-flat-vector-illustration-happy-girls-guys-having-excursion-with-tour-guide-holding-flag-men-women-taking-photo-looking-sightseeing-tourism-trip-concept_74855-24526.jpg?w=2000",
+    "rating": 4.8,
+    "about": "This is tour guide"
+  }
+]
