@@ -1,8 +1,10 @@
 import { Avatar, Dropdown, Navbar } from "flowbite-react";
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const Navbar1 = () => {
+  const { logout } = useContext(AuthContext);
   return (
     <div>
       <Navbar fluid={true} rounded={true}>
@@ -51,6 +53,7 @@ const Navbar1 = () => {
 
           <Link to="/signup">Sign Up</Link>
           <Link to="/login">Login</Link>
+          <Link onClick={logout}>Logout</Link>
         </Navbar.Collapse>
       </Navbar>
     </div>

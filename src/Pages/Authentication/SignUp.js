@@ -1,9 +1,11 @@
 import { Button } from "flowbite-react";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import Img from "../../assets/signup.webp";
+import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
+  const { createUser } = useContext(AuthContext);
   const [agree, setAgree] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -13,6 +15,12 @@ const SignUp = () => {
     const photoUrl = form.photo_url.value;
     const email = form.email.value;
     const password = form.password.value;
+    createUser(email, password)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
+        console.log(user);
+      })
+      .catch((err) => console.error("Error", err));
   };
   const handleCheakbox = (e) => {
     setAgree(e.target.checked);
@@ -67,6 +75,9 @@ const SignUp = () => {
       </div>
       <div>
         <img src={Img} alt="" />
+        <p className="font-semibold">
+          <Link to="/login">I have already an account</Link>
+        </p>
       </div>
     </div>
   );
