@@ -2,11 +2,14 @@ import { Button } from "flowbite-react";
 import React, { useContext } from "react";
 import Img from "../../assets/signup.webp";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { login } = useContext(AuthContext);
+  const { login, providerLogin } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const googleProvider = new GoogleAuthProvider();
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -16,6 +19,17 @@ const Login = () => {
     login(email, password)
       .then((result) => {
         const user = result.user;
+        console.log(user);
+        navigate("/");
+        form.reset();
+      })
+      .catch((err) => console.error("Error", err));
+  };
+
+  const googleLogin = () => {
+    providerLogin(googleProvider)
+      .then((userCredentials) => {
+        const user = userCredentials.user;
         console.log(user);
       })
       .catch((err) => console.error("Error", err));
@@ -48,7 +62,10 @@ const Login = () => {
         </form>
         <hr className="my-4" />
         <div className="flex justify-center mt-10">
-          <Link className="flex justify-center items-center border-2 border-sky-400 bg-sky-100 hover:bg-sky-200 px-3 rounded-2xl">
+          <Link
+            onClick={googleLogin}
+            className="flex justify-center items-center border-2 border-sky-400 bg-sky-100 hover:bg-sky-200 px-3 rounded-2xl"
+          >
             <FcGoogle className="text-2xl" />
             <p className="font-bold ml-1">Continue With Google</p>
           </Link>

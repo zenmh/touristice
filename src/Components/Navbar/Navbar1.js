@@ -2,58 +2,45 @@ import { Avatar, Dropdown, Navbar } from "flowbite-react";
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import Logo from "../../assets/logo.png";
 
 const Navbar1 = () => {
-  const { logout } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   return (
     <div>
       <Navbar fluid={true} rounded={true}>
         <Navbar.Brand href="https://flowbite.com/">
-          <img
-            src="https://flowbite.com/docs/images/logo.svg"
-            className="mr-3 h-6 sm:h-9"
-            alt="Flowbite Logo"
-          />
-          <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-            Flowbite
-          </span>
+          <img src={Logo} className="mr-1 w-10 h-10" alt="Flowbite Logo" />
+          <h2 className="font-bold text-2xl">Touristics</h2>
         </Navbar.Brand>
-        <div className="flex md:order-2">
-          <Dropdown
-            arrowIcon={false}
-            inline={true}
-            label={
-              <Avatar
-                alt="User settings"
-                img="https://flowbite.com/docs/images/people/profile-picture-5.jpg"
-                rounded={true}
-              />
-            }
-          >
-            <Dropdown.Header>
-              <span className="block text-sm">Bonnie Green</span>
-              <span className="block truncate text-sm font-medium">
-                name@flowbite.com
-              </span>
-            </Dropdown.Header>
-            <Dropdown.Item>Dashboard</Dropdown.Item>
-            <Dropdown.Item>Settings</Dropdown.Item>
-            <Dropdown.Item>Earnings</Dropdown.Item>
-            <Dropdown.Divider />
-            <Dropdown.Item>Sign out</Dropdown.Item>
-          </Dropdown>
-          <Navbar.Toggle />
-        </div>
         <Navbar.Collapse>
           <Link to="/">Home</Link>
-
-          <Link>About</Link>
-
+          <Link to="/blog">Blog</Link>
           <Link to="/services">Services</Link>
-
-          <Link to="/signup">Sign Up</Link>
-          <Link to="/login">Login</Link>
-          <Link onClick={logout}>Logout</Link>
+          {user ? (
+            <div className="flex md:order-2">
+              <Dropdown
+                arrowIcon={false}
+                inline={true}
+                label={<Avatar alt="" img={user?.photoURL} rounded={true} />}
+              >
+                <Dropdown.Header>
+                  <span className="block text-sm">Bonnie Green</span>
+                  <span className="block truncate text-sm font-medium">
+                    name@flowbite.com
+                  </span>
+                </Dropdown.Header>
+                <Dropdown.Item>Dashboard</Dropdown.Item>
+                <Dropdown.Item>Settings</Dropdown.Item>
+                <Dropdown.Item>Earnings</Dropdown.Item>
+                <Dropdown.Divider />
+                <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
+              </Dropdown>
+              <Navbar.Toggle />
+            </div>
+          ) : (
+            <Link to="/login">Login</Link>
+          )}
         </Navbar.Collapse>
       </Navbar>
     </div>

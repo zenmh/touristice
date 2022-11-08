@@ -5,7 +5,7 @@ import Img from "../../assets/signup.webp";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, updataUserProfile } = useContext(AuthContext);
   const [agree, setAgree] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -19,9 +19,18 @@ const SignUp = () => {
       .then((userCredentials) => {
         const user = userCredentials.user;
         console.log(user);
+        updateUserInfo(name, photoUrl);
+        form.reset();
       })
       .catch((err) => console.error("Error", err));
   };
+
+  const updateUserInfo = (name, photoUrl) => {
+    updataUserProfile({ displayName: name, photoURL: photoUrl })
+      .then(() => {})
+      .catch((err) => console.error("Error", err));
+  };
+
   const handleCheakbox = (e) => {
     setAgree(e.target.checked);
   };
