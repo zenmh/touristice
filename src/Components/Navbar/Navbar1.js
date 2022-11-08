@@ -43,15 +43,14 @@ const Navbar1 = () => {
           <Navbar.Toggle />
         </div>
         <Navbar.Collapse>
-          <Navbar.Link active={true}>
-            <Link to="/">Home</Link>
-          </Navbar.Link>
-          <Navbar.Link>About</Navbar.Link>
-          <Navbar.Link>
-            <Link to="/services">Services</Link>
-          </Navbar.Link>
-          <Navbar.Link>Pricing</Navbar.Link>
-          <Navbar.Link>Contact</Navbar.Link>
+          <Link to="/">Home</Link>
+
+          <Link>About</Link>
+
+          <Link to="/services">Services</Link>
+
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Login</Link>
         </Navbar.Collapse>
       </Navbar>
     </div>
