@@ -40,7 +40,9 @@ const Navbar1 = () => {
                 <Dropdown.Item>My Reviews</Dropdown.Item>
                 <Dropdown.Item>Add Service</Dropdown.Item>
                 <Dropdown.Item>Dashboard</Dropdown.Item>
-                <Dropdown.Item>Dark</Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/myreviews">My Reviews</Link>
+                </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
               </Dropdown>

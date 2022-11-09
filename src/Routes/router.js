@@ -3,7 +3,9 @@ import Main from "../Layouts/Main";
 import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
 import Blog from "../Pages/Blog/Blog";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 import Home from "../Pages/Home/Home/Home";
+import MyReviews from "../Pages/MyReviews/MyReviews";
 import Review from "../Pages/Review/Review";
 import Service from "../Pages/Service/Service";
 import Services from "../Pages/Services/Services";
@@ -46,6 +48,14 @@ export const router = createBrowserRouter([
         path: "/blog",
         element: <Blog />,
       },
+      {
+        path: "/myreviews",
+        element: <MyReviews />,
+      },
     ],
+  },
+  {
+    path: "*",
+    element: <ErrorPage />,
   },
 ]);

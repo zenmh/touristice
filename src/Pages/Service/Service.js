@@ -1,12 +1,21 @@
 import { Card } from "flowbite-react";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import ReviewItem from "../Review/ReviewItem";
 
 const Service = () => {
+  const [reviews, setReviews] = useState([]);
   const service = useLoaderData();
   const { user } = useContext(AuthContext);
   const { _id, title, img, about, rating, price } = service;
+
+  useEffect(() => {
+    fetch(`http://localhost:5000/itemReviews?title=${title}`)
+      .then((res) => res.json())
+      .then((reviewsData) => setReviews(reviewsData))
+      .catch((err) => console.error("Error", err));
+  }, [title, reviews]);
 
   return (
     <div className="mb-96">
@@ -28,7 +37,11 @@ const Service = () => {
                 </h5>
               </div>
               <div className="flow-root">
-                <ul className="divide-y divide-gray-200 dark:divide-gray-700"></ul>
+                <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+                  {reviews.map((review) => (
+                    <ReviewItem key={review._id} review={review} />
+                  ))}
+                </ul>
               </div>
             </Card>
           </div>
