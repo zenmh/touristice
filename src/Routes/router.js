@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../Layouts/Main";
+import AddService from "../Pages/AddService/AddService";
 import Login from "../Pages/Authentication/Login";
 import SignUp from "../Pages/Authentication/SignUp";
 import Blog from "../Pages/Blog/Blog";
@@ -51,6 +52,10 @@ export const router = createBrowserRouter([
       {
         path: "/myreviews",
         element: <MyReviews />,
+      },
+      {
+        path: "/addservice",
+        element: <AddService />,
       },
     ],
   },

@@ -24,7 +24,6 @@ const MyReviews = () => {
       fetch(`http://localhost:5000/reviews/${id}`, { method: "DELETE" })
         .then((res) => res.json())
         .then((data) => {
-          console.log(data);
           if (data.deletedCount) {
             toast.info("🦄 Wow so easy!", {
               position: "top-right",

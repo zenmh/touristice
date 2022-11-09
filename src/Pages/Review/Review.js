@@ -41,7 +41,8 @@ const Review = () => {
           form.reset();
           navigate("/services");
         }
-      });
+      })
+      .catch((err) => console.error("Error", err));
   };
   return (
     <div>

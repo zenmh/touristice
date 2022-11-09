@@ -38,7 +38,10 @@ const Navbar1 = () => {
                   </span>
                 </Dropdown.Header>
                 <Dropdown.Item>My Reviews</Dropdown.Item>
-                <Dropdown.Item>Add Service</Dropdown.Item>
+                <Dropdown.Item>
+                  <Link to="/addservice">Add Service</Link>
+                </Dropdown.Item>
+
                 <Dropdown.Item>Dashboard</Dropdown.Item>
                 <Dropdown.Item>
                   <Link to="/myreviews">My Reviews</Link>
