@@ -1,11 +1,12 @@
 import { Button } from "flowbite-react";
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Review = () => {
   const { user } = useContext(AuthContext);
   const { _id, title } = useLoaderData();
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -29,7 +30,14 @@ const Review = () => {
       body: JSON.stringify(review),
     })
       .then((res) => res.json())
-      .then((data) => console.log(data));
+      .then((data) => {
+        console.log(data);
+        if (data.acknowledged) {
+          alert("We got our review");
+          form.reset();
+          navigate("/services");
+        }
+      });
   };
   return (
     <div>

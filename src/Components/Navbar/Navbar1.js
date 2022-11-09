@@ -22,19 +22,27 @@ const Navbar1 = () => {
               <Dropdown
                 arrowIcon={false}
                 inline={true}
-                label={<Avatar alt="" img={user?.photoURL} rounded={true} />}
+                label={
+                  <Avatar
+                    alt=""
+                    img={user?.photoURL}
+                    rounded={true}
+                    title={user?.displayName}
+                  />
+                }
               >
                 <Dropdown.Header>
-                  <span className="block text-sm">Bonnie Green</span>
+                  <span className="block text-sm">{user?.displayName}</span>
                   <span className="block truncate text-sm font-medium">
-                    name@flowbite.com
+                    {user?.email}
                   </span>
                 </Dropdown.Header>
+                <Dropdown.Item>My Reviews</Dropdown.Item>
+                <Dropdown.Item>Add Service</Dropdown.Item>
                 <Dropdown.Item>Dashboard</Dropdown.Item>
-                <Dropdown.Item>Settings</Dropdown.Item>
-                <Dropdown.Item>Earnings</Dropdown.Item>
+                <Dropdown.Item>Dark</Dropdown.Item>
                 <Dropdown.Divider />
-                <Dropdown.Item onClick={logout}>Sign out</Dropdown.Item>
+                <Dropdown.Item onClick={logout}>Sign Out</Dropdown.Item>
               </Dropdown>
               <Navbar.Toggle />
             </div>
