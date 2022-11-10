@@ -1,9 +1,13 @@
 import { Button } from "flowbite-react";
 import React, { useContext } from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Update = () => {
+  useTitle("Review Update");
+  const navigate = useNavigate();
   const {
     _id,
     service_id,
@@ -32,7 +36,6 @@ const Update = () => {
       title,
       opinion,
     };
-    console.log(review);
     fetch(`http://localhost:5000/myreview/${_id}`, {
       method: "PUT",
       headers: {
@@ -42,7 +45,19 @@ const Update = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
+        if (data.modifiedCount) {
+          toast.success("Updated Successfully", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
+        }
+        navigate("/myreviews");
       })
       .catch((err) => console.error("Error", err));
   };

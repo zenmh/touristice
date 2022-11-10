@@ -37,7 +37,6 @@ const Review = () => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.acknowledged) {
           toast.info("Thanks For Feedback", {
             position: "top-right",

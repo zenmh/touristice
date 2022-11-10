@@ -20,7 +20,6 @@ const Login = () => {
     const form = e.target;
     const email = form.email.value;
     const password = form.password.value;
-    console.log(email, password);
     login(email, password)
       .then((result) => {
         setError("");
@@ -28,7 +27,6 @@ const Login = () => {
         const currentUser = {
           email: user.email,
         };
-        console.log(currentUser);
         fetch("https://touristics-server.vercel.app/jwt", {
           method: "POST",
           headers: {
@@ -38,7 +36,6 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
           })
@@ -56,7 +53,6 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user.email);
         const currentUser = {
           email: user?.email,
         };
@@ -69,7 +65,6 @@ const Login = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
             localStorage.setItem("token", data.token);
             navigate(from, { replace: true });
           })
