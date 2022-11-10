@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ServiceCard from "../../../Components/ServiceCard/ServiceCard";
 import Slider from "../../../Components/Slider/Slider";
+import Guides from "../Guides/Guides";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -23,6 +24,7 @@ const Home = () => {
       <Link to="/services" className="flex justify-center">
         <Button gradientMonochrome="cyan">See All</Button>
       </Link>
+      <Guides />
     </>
   );
 };

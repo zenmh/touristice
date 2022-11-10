@@ -36,13 +36,16 @@ const ServiceCard = ({ service }) => {
       />
       <div className="border-2">
         <img onClick={() => setVisible(true)} primary="true" src={img} alt="" />
-
-        <h2>{title}</h2>
-        <p>Rating : {rating}</p>
-        <p>Price : {price}</p>
-        <p>{about}</p>
+        <div className="font-bold pl-4">
+          <h2 className="my-2">{title}</h2>
+          <p className="my-2">Rating : {rating}</p>
+          <p className="my-2">Price : ${price}</p>
+        </div>
+        <p className="pl-4">{about}</p>
         <Link to={`/service/${_id}`}>
-          <Button gradientMonochrome="teal">View Details</Button>
+          <Button className="w-full mt-4" gradientMonochrome="teal">
+            View Details
+          </Button>
         </Link>
       </div>
     </div>
@@ -50,18 +53,3 @@ const ServiceCard = ({ service }) => {
 };
 
 export default ServiceCard;
-
-/**<Card imgAlt="" imgSrc={img}>
-        <h5 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
-          {title}
-        </h5>
-        <h5>Rating : {rating}</h5>
-        <h5>Price : {price}</h5>
-        <p className="font-normal text-gray-700 dark:text-gray-400">{about}</p>
-        <div>
-          <Link to={`/service/${_id}`}>
-            <Button gradientMonochrome="teal">View Details</Button>
-          </Link>
-        </div>
-      </Card> 
- */
