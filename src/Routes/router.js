@@ -70,7 +70,7 @@ export const router = createBrowserRouter([
       {
         path: "/myreview/:id",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/myreview/${params.id}`),
+          fetch(`https://touristics-server.vercel.app/myreview/${params.id}`),
         element: <Update />,
       },
     ],
