@@ -4,10 +4,6 @@
 
 ### Live Site Link : https://touristics-872a8.web.app
 
-## [Server Site](https://touristics-server.vercel.app)
-
-### Server Site Link : https://touristics-server.vercel.app
-
 ## [Server Site Code Link](https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-mehedihasan2004)
 
 ### Server Site Code Link : https://github.com/Porgramming-Hero-web-course/b6a11-service-review-server-side-mehedihasan2004
