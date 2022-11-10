@@ -13,7 +13,7 @@ const ServiceCard = ({ service }) => {
   const { _id, img, title, about, rating, price } = service;
   useEffect(() => {
     setIsLoading(true);
-    fetch("http://localhost:5000/allServices")
+    fetch("https://touristics-server.vercel.app/allServices")
       .then((res) => res.json())
       .then((data) => {
         setServices(data);

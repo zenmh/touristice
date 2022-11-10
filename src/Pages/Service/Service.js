@@ -12,7 +12,7 @@ const Service = () => {
   useTitle("Service");
 
   useEffect(() => {
-    fetch(`http://localhost:5000/itemReviews?title=${title}`)
+    fetch(`https://touristics-server.vercel.app/itemReviews?title=${title}`)
       .then((res) => res.json())
       .then((reviewsData) => setReviews(reviewsData))
       .catch((err) => console.error("Error", err));

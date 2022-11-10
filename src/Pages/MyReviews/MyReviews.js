@@ -11,11 +11,14 @@ const MyReviews = () => {
   const [refresh, setRefresh] = useState(false);
   useTitle("My Reviews");
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
-      headers: {
-        authorization: `Bearer ${localStorage.getItem("token")}`,
-      },
-    })
+    fetch(
+      `https://touristics-server.vercel.app/myreviews?email=${user?.email}`,
+      {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("token")}`,
+        },
+      }
+    )
       .then((res) => res.json())
       .then((revs) => {
         setReviews(revs);
@@ -26,7 +29,9 @@ const MyReviews = () => {
   const deleteReview = (id) => {
     const agree = window.confirm("Are sure to delete this review !");
     if (agree) {
-      fetch(`http://localhost:5000/reviews/${id}`, { method: "DELETE" })
+      fetch(`https://touristics-server.vercel.app/reviews/${id}`, {
+        method: "DELETE",
+      })
         .then((res) => {
           if (res.status === 401 || res.status === 403) {
             return logout();
