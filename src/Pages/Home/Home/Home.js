@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ServiceCard from "../../../Components/ServiceCard/ServiceCard";
 import Slider from "../../../Components/Slider/Slider";
 import Guides from "../Guides/Guides";
+import Specialities from "../Specialities/Specialities";
 
 const Home = () => {
   const [services, setServices] = useState([]);
@@ -25,6 +26,7 @@ const Home = () => {
         <Button gradientMonochrome="cyan">See All</Button>
       </Link>
       <Guides />
+      <Specialities />
     </>
   );
 };

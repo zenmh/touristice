@@ -16,16 +16,20 @@ export const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const providerLogin = (provider) => {
+    setLoading(true);
     return signInWithPopup(auth, provider);
   };
 
   const createUser = (email, password) => {
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const login = (email, password) => {
+    setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -34,6 +38,7 @@ const AuthProvider = ({ children }) => {
   };
 
   const logout = async () => {
+    setLoading(true);
     return signOut(auth)
       .then(() => {})
       .catch((err) => console.error("Error", err));
@@ -42,6 +47,7 @@ const AuthProvider = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
+      setLoading(false);
     });
     return () => unsubscribe();
   }, []);
@@ -51,6 +57,7 @@ const AuthProvider = ({ children }) => {
       value={{
         user,
         error,
+        loading,
         providerLogin,
         createUser,
         login,

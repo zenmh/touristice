@@ -1,6 +1,7 @@
 import { Button } from "flowbite-react";
 import React, { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Review = () => {
@@ -37,7 +38,16 @@ const Review = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          alert("We got our review");
+          toast.info("Thanks For Feedback", {
+            position: "top-right",
+            autoClose: 1500,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "dark",
+          });
           form.reset();
           navigate("/services");
         }

@@ -10,6 +10,7 @@ import MyReviews from "../Pages/MyReviews/MyReviews";
 import Review from "../Pages/Review/Review";
 import Service from "../Pages/Service/Service";
 import Services from "../Pages/Services/Services";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -51,11 +52,19 @@ export const router = createBrowserRouter([
       },
       {
         path: "/myreviews",
-        element: <MyReviews />,
+        element: (
+          <ProtectedRoute>
+            <MyReviews />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "/addservice",
-        element: <AddService />,
+        element: (
+          <ProtectedRoute>
+            <AddService />
+          </ProtectedRoute>
+        ),
       },
     ],
   },

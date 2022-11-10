@@ -5,11 +5,15 @@ import MyReview from "./MyReview";
 import "react-toastify/dist/ReactToastify.css";
 
 const MyReviews = () => {
-  const { user } = useContext(AuthContext);
+  const { user, logout } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
-    fetch(`http://localhost:5000/myreviews?email=${user?.email}`)
+    fetch(`http://localhost:5000/myreviews?email=${user?.email}`, {
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("token")}`,
+      },
+    })
       .then((res) => res.json())
       .then((revs) => {
         setReviews(revs);
@@ -21,7 +25,12 @@ const MyReviews = () => {
     const agree = window.confirm("Are sure to delete this review !");
     if (agree) {
       fetch(`http://localhost:5000/reviews/${id}`, { method: "DELETE" })
-        .then((res) => res.json())
+        .then((res) => {
+          if (res.status === 401 || res.status === 403) {
+            return logout();
+          }
+          return res.json();
+        })
         .then((data) => {
           if (data.deletedCount) {
             toast.info("Review Deleted !", {

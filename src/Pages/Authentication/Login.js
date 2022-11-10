@@ -2,7 +2,7 @@ import { Button } from "flowbite-react";
 import React, { useContext } from "react";
 import Img from "../../assets/signup.webp";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 
@@ -10,6 +10,8 @@ const Login = () => {
   const { login, providerLogin, error, setError } = useContext(AuthContext);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
+  const location = useLocation();
+  const from = location?.state?.from?.pathname || "/";
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,8 +23,25 @@ const Login = () => {
       .then((result) => {
         setError("");
         const user = result.user;
-        console.log(user);
-        navigate("/");
+        const currentUser = {
+          email: user.email,
+        };
+        console.log(currentUser);
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          })
+          .catch((err) => console.error("Error", err));
+
         form.reset();
       })
       .catch((err) => {
@@ -35,7 +54,25 @@ const Login = () => {
     providerLogin(googleProvider)
       .then((userCredentials) => {
         const user = userCredentials.user;
-        console.log(user);
+        console.log(user.email);
+        const currentUser = {
+          email: user?.email,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            localStorage.setItem("token", data.token);
+            navigate(from, { replace: true });
+          })
+          .catch((err) => console.error("Error", err));
+        // navigate(from, { replace: true });
       })
       .catch((err) => console.error("Error", err));
   };

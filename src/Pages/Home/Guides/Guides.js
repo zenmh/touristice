@@ -5,12 +5,11 @@ const Guides = () => {
   fetch("guide.json")
     .then((res) => res.json())
     .then((data) => {
-      console.log(data);
       setGuides(data);
     });
   return (
     <div className="my-10">
-      <h2 className="text-2xl font-bold text-center mb-4">
+      <h2 className="text-3xl font-bold text-center mb-4">
         Our Superman Who Guide You
       </h2>
       <div className="grid grid-cols-4 gap-4">
