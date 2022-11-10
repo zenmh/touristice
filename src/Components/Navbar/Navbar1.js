@@ -37,7 +37,6 @@ const Navbar1 = () => {
                     {user?.email}
                   </span>
                 </Dropdown.Header>
-                <Dropdown.Item>My Reviews</Dropdown.Item>
                 <Dropdown.Item>
                   <Link to="/addservice">Add Service</Link>
                 </Dropdown.Item>

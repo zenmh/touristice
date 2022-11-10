@@ -3,20 +3,27 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "react-photo-view/dist/react-photo-view.css";
 import { PhotoSlider } from "react-photo-view";
+import Spinner1 from "../Spinners/Spinner1";
 
 const ServiceCard = ({ service }) => {
   const [services, setServices] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
   const [visible, setVisible] = useState(false);
   const [index, setIndex] = useState(0);
   const { _id, img, title, about, rating, price } = service;
   useEffect(() => {
+    setIsLoading(true);
     fetch("http://localhost:5000/allServices")
       .then((res) => res.json())
       .then((data) => {
         setServices(data);
+        setIsLoading(false);
       })
       .catch((err) => console.error("Error", err));
   }, []);
+  if (isLoading) {
+    return <Spinner1 />;
+  }
 
   return (
     <div>
