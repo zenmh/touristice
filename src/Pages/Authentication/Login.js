@@ -7,9 +7,10 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import { GoogleAuthProvider } from "firebase/auth";
 
 const Login = () => {
-  const { login, providerLogin } = useContext(AuthContext);
+  const { login, providerLogin, error, setError } = useContext(AuthContext);
   const navigate = useNavigate();
   const googleProvider = new GoogleAuthProvider();
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -18,12 +19,16 @@ const Login = () => {
     console.log(email, password);
     login(email, password)
       .then((result) => {
+        setError("");
         const user = result.user;
         console.log(user);
         navigate("/");
         form.reset();
       })
-      .catch((err) => console.error("Error", err));
+      .catch((err) => {
+        console.error("Error", err);
+        setError(err.message);
+      });
   };
 
   const googleLogin = () => {
@@ -39,6 +44,11 @@ const Login = () => {
     <div className="grid grid-cols-2 mx-60">
       <div>
         <img src={Img} alt="" />
+        <Link to="/signup">
+          <p className="font-bold text-center">
+            <u>Create an account</u>
+          </p>
+        </Link>
       </div>
       <div>
         <h2 className="text-3xl font-bold mb-10">Sign In</h2>
@@ -56,9 +66,12 @@ const Login = () => {
             placeholder="Password"
           />
           <hr className="my-4" />
-          <Button type="submit" gradientMonochrome="teal">
-            Sign In
-          </Button>
+          <div className="flex justify-between items-center">
+            <p className="text-red-500">{error}</p>
+            <Button type="submit" gradientMonochrome="teal">
+              Sign In
+            </Button>
+          </div>
         </form>
         <hr className="my-4" />
         <div className="flex justify-center mt-10">

@@ -9,8 +9,8 @@ const Navbar1 = () => {
   return (
     <div>
       <Navbar fluid={true} rounded={true}>
-        <Navbar.Brand href="https://flowbite.com/">
-          <img src={Logo} className="mr-1 w-10 h-10" alt="Flowbite Logo" />
+        <Navbar.Brand>
+          <img src={Logo} className="mr-1 w-10 h-10" alt="" />
           <h2 className="font-bold text-2xl">Touristics</h2>
         </Navbar.Brand>
         <Navbar.Collapse>

@@ -1,12 +1,14 @@
 import { Button } from "flowbite-react";
 import React, { useContext, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Img from "../../assets/signup.webp";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const SignUp = () => {
-  const { createUser, updataUserProfile } = useContext(AuthContext);
+  const { createUser, updataUserProfile, error, setError } =
+    useContext(AuthContext);
   const [agree, setAgree] = useState(false);
+  const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -21,14 +23,20 @@ const SignUp = () => {
         console.log(user);
         updateUserInfo(name, photoUrl);
         form.reset();
+        navigate("/");
       })
-      .catch((err) => console.error("Error", err));
+      .catch((err) => {
+        console.error("Error", err);
+        setError(err.message);
+      });
   };
 
   const updateUserInfo = (name, photoUrl) => {
     updataUserProfile({ displayName: name, photoURL: photoUrl })
       .then(() => {})
-      .catch((err) => console.error("Error", err));
+      .catch((err) => {
+        console.error("Error", err);
+      });
   };
 
   const handleCheakbox = (e) => {
@@ -67,15 +75,18 @@ const SignUp = () => {
             placeholder="Password"
           />
           <br />
+          <p className="text-end text-red-500">{error}</p>
           <hr className="mb-4 border-2 border-b-black" size="100" />
           <div className="flex justify-between">
             <div className="flex items-center">
               <input type="checkbox" name="checkbox" onClick={handleCheakbox} />
               <p className="ml-2">
-                I agree all statements in <Link>Terms of service</Link>
+                I agree all statements in{" "}
+                <Link className="font-bold">
+                  <u>Terms of service</u>
+                </Link>
               </p>
             </div>
-            <br />
             <Button type="submit" gradientMonochrome="teal" disabled={!agree}>
               Sign Up
             </Button>
@@ -84,8 +95,10 @@ const SignUp = () => {
       </div>
       <div>
         <img src={Img} alt="" />
-        <p className="font-semibold">
-          <Link to="/login">I have already an account</Link>
+        <p className="font-semibold text-center">
+          <Link to="/login">
+            <u>I have already an account</u>
+          </Link>
         </p>
       </div>
     </div>

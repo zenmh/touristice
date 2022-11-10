@@ -1,4 +1,3 @@
-import { Card } from "flowbite-react";
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -18,32 +17,30 @@ const Service = () => {
   }, [title, reviews]);
 
   return (
-    <div className="mb-96">
-      <div className="border-2 p-4">
+    <div className="mb-96 p-4">
+      <div className="grid grid-cols-2">
         <img src={img} alt="" />
-        <h2>{title}</h2>
-        <h2>Price : ${price}</h2>
-        <h4>Rating : {rating}</h4>
-        <p>Description : {about}</p>
+        <div className="pl-8">
+          <h2 className="font-bold text-lg my-1">{title}</h2>
+          <h2 className="font-bold text-lg my-1">Price : ${price}</h2>
+          <h4 className="font-bold text-lg my-1">Rating : {rating}</h4>
+          <p>
+            <span className="font-bold text-lg">Description : </span>
+            {about}
+          </p>
+        </div>
       </div>
-      <div className="border-2">
-        <h2 className="text-2xl font-bold text-center">Reviews From Gusets</h2>
+      <div className="mt-10">
         <div className="grid grid-cols-2 gap-4">
           <div className="w-full">
-            <Card>
-              <div className="mb-4 flex items-center justify-between">
-                <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-                  Latest Customers
-                </h5>
-              </div>
-              <div className="flow-root">
-                <ul className="divide-y divide-gray-200 dark:divide-gray-700">
-                  {reviews.map((review) => (
-                    <ReviewItem key={review._id} review={review} />
-                  ))}
-                </ul>
-              </div>
-            </Card>
+            <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
+              Latest Customers Review
+            </h5>
+            <ul className="divide-y divide-gray-200 dark:divide-gray-700">
+              {reviews.map((review) => (
+                <ReviewItem key={review._id} review={review} />
+              ))}
+            </ul>
           </div>
           <div className="flex justify-center items-center">
             {user?.uid ? (

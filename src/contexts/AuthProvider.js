@@ -15,6 +15,7 @@ export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState("");
+  const [error, setError] = useState("");
 
   const providerLogin = (provider) => {
     return signInWithPopup(auth, provider);
@@ -49,11 +50,13 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider
       value={{
         user,
+        error,
         providerLogin,
         createUser,
         login,
         updataUserProfile,
         logout,
+        setError,
       }}
     >
       {children}
