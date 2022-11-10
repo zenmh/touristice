@@ -1,5 +1,6 @@
 import { Button } from "flowbite-react";
 import React from "react";
+import { Link } from "react-router-dom";
 
 const MyReview = ({ review, deleteReview }) => {
   const { _id, Img, title, opinion } = review;
@@ -16,9 +17,11 @@ const MyReview = ({ review, deleteReview }) => {
           <p>{opinion}</p>
         </div>
         <div className="flex items-center justify-evenly">
-          <Button size="xs" title="change my opinion" color="light">
-            Edit
-          </Button>
+          <Link to={`/myreview/${_id}`}>
+            <Button size="xs" title="change my opinion" color="light">
+              Edit
+            </Button>
+          </Link>
           <Button
             onClick={() => deleteReview(_id)}
             size="xs"

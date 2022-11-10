@@ -1,35 +1,40 @@
 import { Button } from "flowbite-react";
 import React, { useContext } from "react";
-import { useLoaderData, useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
+import { useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
-import useTitle from "../../hooks/useTitle";
 
-const Review = () => {
+const Update = () => {
+  const {
+    _id,
+    service_id,
+    email,
+    userImg,
+    Img,
+    price,
+    rating,
+    title,
+    opinion,
+  } = useLoaderData();
   const { user } = useContext(AuthContext);
-  const { _id, title, img, price, rating } = useLoaderData();
-  const navigate = useNavigate();
-  useTitle("Review");
-  const handleSubmit = (e) => {
+  const handleUpdate = (e) => {
     e.preventDefault();
-
     const form = e.target;
     const name = form.name.value;
     const opinion = form.opinion.value;
-    console.log(name, opinion, user?.photoURL);
     const review = {
-      service_id: _id,
-      email: user?.email,
-      userImg: user?.photoURL,
-      Img: img,
+      service_id,
+      email,
+      userImg,
+      Img,
       price,
       rating,
       name,
       title,
       opinion,
     };
-    fetch("https://touristics-server.vercel.app/reviews", {
-      method: "POST",
+    console.log(review);
+    fetch(`http://localhost:5000/myreview/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
@@ -38,26 +43,13 @@ const Review = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.acknowledged) {
-          toast.info("Thanks For Feedback", {
-            position: "top-right",
-            autoClose: 1500,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-            theme: "dark",
-          });
-          form.reset();
-          navigate("/services");
-        }
       })
       .catch((err) => console.error("Error", err));
   };
   return (
     <div>
-      <form onSubmit={handleSubmit} className="mx-3">
+      <h2>This is Update</h2>
+      <form onSubmit={handleUpdate} className="mx-3">
         <h2 className="text-3xl font-bold text-slate-600">{title}</h2>
         <div className="flex">
           <input
@@ -81,13 +73,14 @@ const Review = () => {
           name="opinion"
           className="w-full px-2 my-4"
           placeholder="Write Your Opinion"
+          defaultValue={opinion}
         ></textarea>
         <Button type="submit" gradientMonochrome="teal" className="w-full">
-          Submit
+          Update
         </Button>
       </form>
     </div>
   );
 };
 
-export default Review;
+export default Update;
