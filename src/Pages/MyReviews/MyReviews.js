@@ -1,4 +1,3 @@
-import { Card } from "flowbite-react";
 import { useContext, useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
@@ -25,7 +24,7 @@ const MyReviews = () => {
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount) {
-            toast.info("🦄 Wow so easy!", {
+            toast.info("Review Deleted !", {
               position: "top-right",
               autoClose: 1500,
               hideProgressBar: false,
@@ -43,10 +42,8 @@ const MyReviews = () => {
   return (
     <div>
       <div className="w-full">
-        <Card>
-          <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
-            My Reviews
-          </h5>
+        <div>
+          <h5 className="text-xl font-bold text-center my-8">My Reviews</h5>
           <ul className="divide-y divide-gray-200 dark:divide-gray-700">
             {reviews.length === 0 ? (
               <div className="flex justify-center md:my-48">
@@ -66,7 +63,7 @@ const MyReviews = () => {
               </>
             )}
           </ul>
-        </Card>
+        </div>
       </div>
     </div>
   );

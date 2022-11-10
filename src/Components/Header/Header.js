@@ -1,12 +1,9 @@
 import React from "react";
-import Navbar1 from "../Navbar/Navbar1";
+
+import Navbar2 from "../Navbar/Navbar2";
 
 const Header = () => {
-  return (
-    <div>
-      <Navbar1 />
-    </div>
-  );
+  return <Navbar2 />;
 };
 
 export default Header;

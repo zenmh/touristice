@@ -32,7 +32,7 @@ const AddService = () => {
       .then((data) => {
         console.log(data);
         if (data.acknowledged) {
-          toast.success("🦄 Wow so easy!", {
+          toast.success("New Service Added", {
             position: "top-right",
             autoClose: 1500,
             hideProgressBar: false,

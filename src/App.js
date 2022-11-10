@@ -4,10 +4,10 @@ import { router } from "./Routes/router";
 
 function App() {
   return (
-    <>
+    <div className="mx-2">
       <RouterProvider router={router} />;
       <ToastContainer />
-    </>
+    </div>
   );
 }
 
