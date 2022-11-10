@@ -19,7 +19,7 @@ const Home = () => {
   return (
     <>
       <Slider />
-      <div className="grid grid-cols-3 gap-4">
+      <div className="md:grid grid-cols-3 gap-4">
         {services.map((service) => (
           <ServiceCard key={service._id} service={service} />
         ))}

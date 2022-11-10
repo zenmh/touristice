@@ -41,7 +41,9 @@ const ServiceCard = ({ service }) => {
           <p className="my-2">Rating : {rating}</p>
           <p className="my-2">Price : ${price}</p>
         </div>
-        <p className="pl-4">{about}</p>
+        <p className="pl-4">
+          {about.length >= 100 ? about.slice(0, 100) : `${about}...`}
+        </p>
         <Link to={`/service/${_id}`}>
           <Button className="w-full mt-4" gradientMonochrome="teal">
             View Details
