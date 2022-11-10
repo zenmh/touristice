@@ -3,12 +3,14 @@ import React, { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Img from "../../assets/signup.webp";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const SignUp = () => {
   const { createUser, updataUserProfile, error, setError } =
     useContext(AuthContext);
   const [agree, setAgree] = useState(false);
   const navigate = useNavigate();
+  useTitle("Sign Up");
   const handleSubmit = (e) => {
     e.preventDefault();
 

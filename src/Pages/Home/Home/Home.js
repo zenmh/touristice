@@ -3,11 +3,13 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ServiceCard from "../../../Components/ServiceCard/ServiceCard";
 import Slider from "../../../Components/Slider/Slider";
+import useTitle from "../../../hooks/useTitle";
 import Guides from "../Guides/Guides";
 import Specialities from "../Specialities/Specialities";
 
 const Home = () => {
   const [services, setServices] = useState([]);
+  useTitle("Home");
   useEffect(() => {
     fetch("http://localhost:5000/services")
       .then((res) => res.json())

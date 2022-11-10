@@ -3,9 +3,11 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import useTitle from "../../hooks/useTitle";
 
 const AddService = () => {
   const navigate = useNavigate();
+  useTitle("Add Service");
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -84,7 +86,7 @@ const AddService = () => {
           className="w-full mt-4"
           placeholder="Description About The Service"
         ></textarea>
-        <Button type="submit" gradientMonochrome="cyan">
+        <Button className="w-full mt-4" type="submit" gradientMonochrome="cyan">
           Upload
         </Button>
       </form>

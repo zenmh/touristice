@@ -3,11 +3,13 @@ import React, { useContext } from "react";
 import { useLoaderData, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 
 const Review = () => {
   const { user } = useContext(AuthContext);
   const { _id, title, img, price, rating } = useLoaderData();
   const navigate = useNavigate();
+  useTitle("Review");
   const handleSubmit = (e) => {
     e.preventDefault();
 

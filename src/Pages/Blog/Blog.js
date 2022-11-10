@@ -1,7 +1,9 @@
 import { Table } from "flowbite-react";
 import React from "react";
+import useTitle from "../../hooks/useTitle";
 
 const Blog = () => {
+  useTitle("Blog");
   return (
     <div className="mx-4">
       <h1 className="font-bold text-2xl text-center">

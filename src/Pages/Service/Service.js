@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useTitle from "../../hooks/useTitle";
 import ReviewItem from "../Review/ReviewItem";
 
 const Service = () => {
@@ -8,6 +9,7 @@ const Service = () => {
   const service = useLoaderData();
   const { user } = useContext(AuthContext);
   const { _id, title, img, about, rating, price } = service;
+  useTitle("Service");
 
   useEffect(() => {
     fetch(`http://localhost:5000/itemReviews?title=${title}`)
@@ -52,7 +54,7 @@ const Service = () => {
               </Link>
             ) : (
               <Link to="/login">
-                <u>Login to add a review</u>
+                <u className="font-bold">Login to add a review</u>
               </Link>
             )}
           </div>
