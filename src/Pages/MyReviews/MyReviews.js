@@ -4,9 +4,10 @@ import { AuthContext } from "../../contexts/AuthProvider";
 import MyReview from "./MyReview";
 import "react-toastify/dist/ReactToastify.css";
 import useTitle from "../../hooks/useTitle";
+import { Spinner } from "flowbite-react";
 
 const MyReviews = () => {
-  const { user, logout } = useContext(AuthContext);
+  const { user, logout, loading } = useContext(AuthContext);
   const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
   useTitle("My Reviews");
@@ -55,6 +56,9 @@ const MyReviews = () => {
         .catch((err) => console.error("Error", err));
     }
   };
+
+  if (loading) return <Spinner />;
+
   return (
     <div>
       <div className="w-full">
@@ -69,13 +73,14 @@ const MyReviews = () => {
               </div>
             ) : (
               <>
-                {reviews.map((review) => (
-                  <MyReview
-                    key={review._id}
-                    review={review}
-                    deleteReview={deleteReview}
-                  />
-                ))}
+                {reviews.length &&
+                  reviews.map((review) => (
+                    <MyReview
+                      key={review._id}
+                      review={review}
+                      deleteReview={deleteReview}
+                    />
+                  ))}
               </>
             )}
           </ul>

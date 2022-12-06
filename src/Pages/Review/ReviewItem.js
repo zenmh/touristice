@@ -17,9 +17,7 @@ const ReviewItem = ({ review }) => {
             {email}
           </p>
         </div>
-        <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-          {opinion}
-        </div>
+        <div className="inline-flex items-center font-semibold">{opinion}</div>
       </div>
     </li>
   );
